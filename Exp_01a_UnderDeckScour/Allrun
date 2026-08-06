@@ -1,0 +1,11 @@
+#!/bin/sh
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+cleanCase
+rm -rf 0
+cp -r 0_org 0
+
+runApplication blockMesh
+runApplication decomposePar
+mpirun -np 8 sedFoam_rbgh -parallel > log.sedFoam 2>&1
+runApplication reconstructPar

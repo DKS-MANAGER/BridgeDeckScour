@@ -1,0 +1,139 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Web:      www.openfoam.com                      |
+|    \\/     M anipulation  | Exp-01a                                         |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p_rbgh
+    {
+        solver          GAMG;
+        tolerance       1e-07;
+        relTol          0.0001;
+        smoother        DIC;
+        nPreSweeps      0;
+        nPostSweeps     2;
+        nFinestSweeps   2;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 10;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+    }
+
+    p_rbghFinal
+    {
+        $p_rbgh;
+        tolerance       1e-7;
+        relTol          0;
+    }
+
+    "(k.b|epsilon.b|pa|alphaPlastic)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0;
+    }
+    
+    omega.b
+    {	
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-9;
+        relTol          0;
+    }
+
+    "(k.bFinal|epsilon.bFinal|paFinal|alphaPlasticFinal)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    omega.bFinal
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-9;
+        relTol          0;
+    }
+
+    "U.a|U.aFinal"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    "U.b|U.bFinal"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    alpha.a
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-9;
+        relTol          0;
+    }
+    alpha.aFinal
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-9;
+        relTol          0;
+    }
+    Theta
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-9;
+        relTol          0;
+    }
+    ThetaFinal
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-9;
+        relTol          0;
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        pa              1.;
+    }
+}
+
+PIMPLE
+{
+    nOuterCorrectors 3;
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 1;
+    nAlphaCorr      1;
+    correctAlpha    yes;
+    pRefPoint       (0.5 0.10 0.005);
+    pRefValue       0;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

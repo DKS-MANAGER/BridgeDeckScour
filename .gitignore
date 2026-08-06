@@ -1,0 +1,30 @@
+# OpenFOAM case outputs
+[0-9]*/
+!0_org/
+postProcessing/
+processor*/
+*.foam
+*.log
+log.*
+dynamicCode/
+
+# Ignore generated blockMesh output files under constant/polyMesh
+**/constant/polyMesh/points
+**/constant/polyMesh/faces
+**/constant/polyMesh/owner
+**/constant/polyMesh/neighbour
+**/constant/polyMesh/boundary
+
+# Ignore POSC text files
+*POSC.txt
+*posc.txt
+gradPOSC.txt
+
+# Python / virtualenv
+__pycache__/
+*.pyc
+
+
+# System / OS
+.DS_Store
+Thumbs.db
