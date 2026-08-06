@@ -29,6 +29,6 @@ timePrecision   6;
 runTimeModifiable true;
 adjustTimeStep  yes;
 maxCo           0.25;
-maxAlphaCo      0.25;
-maxDeltaT       0.001;
+maxAlphaCo      0.1;
+maxDeltaT       0.0008;
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

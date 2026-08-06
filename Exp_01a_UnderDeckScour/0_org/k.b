@@ -100,13 +100,13 @@ boundaryField
     }
     top
     {
-        type            fixedValue;
-        value           uniform 1e-9;
+        type            kqRWallFunction;
+        value           uniform 1.98375e-4;
     }
     bridgeDeck
     {
-        type            fixedValue;
-        value           uniform 1e-9;
+        type            kqRWallFunction;
+        value           uniform 1.98375e-4;
     }
     frontAndBack
     {
