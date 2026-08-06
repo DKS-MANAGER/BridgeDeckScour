@@ -36,7 +36,7 @@ internalField   #codeStream
     #{
         const IOdictionary& d = static_cast<const IOdictionary&>(dict);
         const fvMesh& mesh = refCast<const fvMesh>(d.db());
-        scalarField omega(mesh.nCells(), 1000.0);
+        scalarField omega(mesh.nCells(), 50.0);
         forAll(mesh.C(), cellI)
         {
             if (mesh.C()[cellI].y() >= 0.0)
