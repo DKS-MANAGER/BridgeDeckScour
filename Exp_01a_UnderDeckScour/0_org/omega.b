@@ -36,12 +36,16 @@ internalField   #codeStream
     #{
         const IOdictionary& d = static_cast<const IOdictionary&>(dict);
         const fvMesh& mesh = refCast<const fvMesh>(d.db());
-        scalarField omega(mesh.nCells(), 50.0);
+        scalarField omega(mesh.nCells(), 500.0);
         forAll(mesh.C(), cellI)
         {
             if (mesh.C()[cellI].y() >= 0.0)
             {
                 omega[cellI] = 3.06;
+            }
+            else
+            {
+                omega[cellI] = 500.0;
             }
         }
         omega.writeEntry("", os);
@@ -84,7 +88,7 @@ boundaryField
                 }
                 else
                 {
-                    field[faceI] = 50.0;
+                    field[faceI] = 500.0;
                 }
             }
         #};
@@ -95,7 +99,9 @@ boundaryField
     }
     bottom
     {
-        type            zeroGradient;
+        type            omegaWallFunction;
+        value           uniform 500.0;
+        kn              0.00053;
     }
     top
     {
