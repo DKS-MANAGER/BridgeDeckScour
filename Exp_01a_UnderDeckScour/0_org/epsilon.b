@@ -36,8 +36,7 @@ boundaryField
     }
     top
     {
-        type            epsilonWallFunction;
-        value           uniform 3.825e-5;
+        type            zeroGradient;
     }
     bridgeDeck
     {

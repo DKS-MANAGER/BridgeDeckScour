@@ -16,14 +16,14 @@ FoamFile
 
 dimensions      [0 2 -3 0 0 0 0];
 
-internalField   uniform 4.147e-5;
+internalField   uniform 3.825e-5;
 
 boundaryField
 {
     inlet
     {
         type            fixedValue;
-        value           uniform 4.147e-5;
+        value           uniform 3.825e-5;
     }
     outlet
     {
@@ -32,22 +32,21 @@ boundaryField
     bottom
     {
         type            epsilonWallFunction;
-        value           uniform 4.147e-5;
+        value           uniform 3.825e-5;
     }
     top
     {
-        type            epsilonWallFunction;
-        value           uniform 4.147e-5;
+        type            zeroGradient;
     }
     bridgeDeck
     {
         type            epsilonWallFunction;
-        value           uniform 4.147e-5;
+        value           uniform 3.825e-5;
     }
     deckSides
     {
         type            epsilonWallFunction;
-        value           uniform 4.147e-5;
+        value           uniform 3.825e-5;
     }
     frontAndBack
     {

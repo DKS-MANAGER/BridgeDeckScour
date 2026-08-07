@@ -32,12 +32,12 @@ boundaryField
     }
     bottom
     {
-        type            calculated;
+        type            nutkWallFunction;
         value           uniform 0;
     }
     top
     {
-        type            nutkWallFunction;
+        type            calculated;
         value           uniform 0;
     }
     bridgeDeck
