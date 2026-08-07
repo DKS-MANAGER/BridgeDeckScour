@@ -42,10 +42,10 @@ internalField   #codeStream
         scalarField alpha(mesh.nCells(), 0.0);
         forAll(mesh.C(), cellI)
         {
-            if (mesh.C()[cellI].y() < 0.0)
-            {
-                alpha[cellI] = 0.60;
-            }
+            scalar y = mesh.C()[cellI].y();
+            // Smooth tanh bed profile — matches working 2DPipelineScour setup.
+            // Diffuse interface prevents instant contact-pressure singularity at t=0.
+            alpha[cellI] = 0.60 * 0.5 * (1.0 + tanh((-y) * 2000.0)) + 1e-100;
         }
         alpha.writeEntry("", os);
     #};
@@ -55,8 +55,34 @@ boundaryField
 {
     inlet
     {
-        type            fixedValue;
+        type            codedFixedValue;
         value           uniform 0;
+        name            inletAlpha;
+        codeInclude
+        #{
+            #include "fvCFD.H"
+        #};
+        codeOptions
+        #{
+            -I$(LIB_SRC)/finiteVolume/lnInclude \
+            -I$(LIB_SRC)/meshTools/lnInclude
+        #};
+        codeLibs
+        #{
+            -lfiniteVolume \
+            -lmeshTools
+        #};
+        code
+        #{
+            const fvPatch& boundaryPatch = patch();
+            const vectorField& Cf = boundaryPatch.Cf();
+            scalarField& field = *this;
+            forAll(Cf, faceI)
+            {
+                scalar y = Cf[faceI].y();
+                field[faceI] = 0.60 * 0.5 * (1.0 + tanh((-y) * 2000.0)) + 1e-100;
+            }
+        #};
     }
     outlet
     {
