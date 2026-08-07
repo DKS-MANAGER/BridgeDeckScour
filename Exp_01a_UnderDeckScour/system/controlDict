@@ -17,7 +17,8 @@ startFrom       startTime;
 startTime       0;
 stopAt          endTime;
 endTime         300;
-deltaT          0.001;
+deltaT          1e-4;
+
 writeControl    adjustableRunTime;
 writeInterval   5.0;
 purgeWrite      0;
@@ -27,8 +28,12 @@ writeCompression off;
 timeFormat      general;
 timePrecision   6;
 runTimeModifiable true;
+
+// ---- Adaptive timestep control ----
+// Conservative during 10s ramp; grows freely once bed is settled.
 adjustTimeStep  yes;
-maxCo           0.4;
-maxAlphaCo      0.5;
-maxDeltaT       0.001;
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+maxCo           0.3;          // Strict CFL; pipeline used 0.5 but scour is stiffer
+maxAlphaCo      0.5;          // Controls alpha advection stability
+maxDeltaT       0.005;        // Cap to prevent runaway growth after ramp
+
+// ************************************************************************* //

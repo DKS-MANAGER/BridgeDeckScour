@@ -45,7 +45,10 @@ boundaryField
             const vectorField& Cf = boundaryPatch.Cf();
             vectorField& field = *this;
             scalar t = this->db().time().value();
-            scalar factor = (t <= 2.0) ? (t/2.0) : 1.0;
+            // Smooth cubic ramp over 10 s: f(t) = 3t^2 - 2t^3
+            scalar tRamp = 10.0;
+            scalar xi    = min(t / tRamp, 1.0);
+            scalar factor = xi * xi * (3.0 - 2.0 * xi);
             forAll(Cf, faceI)
             {
                 scalar y = Cf[faceI].y();

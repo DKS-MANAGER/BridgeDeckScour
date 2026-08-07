@@ -45,7 +45,11 @@ boundaryField
             const vectorField& Cf = boundaryPatch.Cf();
             vectorField& field = *this;
             scalar t = this->db().time().value();
-            scalar factor = (t <= 2.0) ? (t/2.0) : 1.0;
+            // Smooth cubic ramp over 10 s: f(t) = 3t²- 2t³, f(0)=0, f(1)=1, f'(0)=f'(1)=0
+            // This eliminates the velocity-pressure impulse that crashes deltaT at startup.
+            scalar tRamp = 10.0;
+            scalar xi   = min(t / tRamp, 1.0);
+            scalar factor = xi * xi * (3.0 - 2.0 * xi);
             forAll(Cf, faceI)
             {
                 scalar y = Cf[faceI].y();
