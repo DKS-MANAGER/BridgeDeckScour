@@ -84,7 +84,7 @@ boundaryField
                 }
                 else
                 {
-                    field[faceI] = 1000.0;
+                    field[faceI] = 50.0;
                 }
             }
         #};

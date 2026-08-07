@@ -50,9 +50,13 @@ boundaryField
             {
                 if (Cf[faceI].y() >= 0.0)
                 {
-                    // Smooth logarithmic boundary layer profile starting at 0 at y=0
-                    scalar u = 0.23 * log(1.0 + 1000.0 * Cf[faceI].y()) / log(111.7);
-                    field[faceI] = factor * vector(u, 0, 0);
+                    // Smooth physical logarithmic boundary layer profile starting at y0
+                    scalar ustar = 0.0126;
+                    scalar y0    = 8.8e-7;
+                    scalar kappa = 0.41;
+                    scalar y     = max(Cf[faceI].y(), y0);
+                    scalar u     = (ustar/kappa) * log(y/y0);
+                    field[faceI] = factor * vector(max(u, 0.0), 0, 0);
                 }
                 else
                 {
