@@ -38,12 +38,12 @@ divSchemes
 //    div(phi,alpha)   Gauss vanLeer;
 //    div(phir,alpha)  Gauss vanLeer;
 // UEqn
-    div(phi.a,U.a)    Gauss linearUpwind grad(U.a);
-    div(phi.b,U.b)    Gauss linearUpwind grad(U.b);
+    div(phi.a,U.a)    Gauss upwind;
+    div(phi.b,U.b)    Gauss upwind;
 //    div(phi.a,U.a)    Gauss upwind phi;
 //    div(phi.b,U.b)    Gauss upwind phi;
-    div(phiRa,Ua)   Gauss linear;
-    div(phiRb,Ub)   Gauss linear;
+    div(phiRa,Ua)   Gauss upwind;
+    div(phiRb,Ub)   Gauss upwind;
 //    div(phiRa,Ua)   Gauss upwind phi;
 //    div(phiRb,Ub)   Gauss upwind phi;
     div(Rca)        Gauss linear;
@@ -51,9 +51,9 @@ divSchemes
 // pEqn
     div(alpha,nu) Gauss linear;
 // k and EpsilonEqn
-    div(phi.b,k.b)     Gauss linearUpwind grad(k.b);
-    div(phi.b,epsilon.b) Gauss linearUpwind grad(epsilon.b);
-    div(phi.b,omega.b) Gauss linearUpwind grad(omega.b);
+    div(phi.b,k.b)     Gauss upwind;
+    div(phi.b,epsilon.b) Gauss upwind;
+    div(phi.b,omega.b) Gauss upwind;
 //    div(phi.b,k.b)     Gauss upwind phi;
 //    div(phi.b,epsilon.b) Gauss upwind phi;
 //    div(phi.b,omega.b) Gauss upwind phi;
