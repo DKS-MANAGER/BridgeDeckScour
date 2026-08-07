@@ -23,7 +23,7 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           uniform 1e-12;
+        value           uniform 293.15;
     }
     outlet
     {
@@ -35,7 +35,7 @@ boundaryField
     }
     top
     {
-        type            zeroGradient;
+        type            slip;
     }
     bridgeDeck
     {
@@ -50,5 +50,3 @@ boundaryField
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

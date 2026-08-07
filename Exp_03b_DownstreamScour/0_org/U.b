@@ -48,11 +48,18 @@ boundaryField
             scalar factor = (t <= 2.0) ? (t/2.0) : 1.0;
             forAll(Cf, faceI)
             {
-                if (Cf[faceI].y() >= 0.0)
+                scalar y = Cf[faceI].y();
+                if (y >= 0.0)
                 {
-                    // Smooth logarithmic boundary layer profile starting at 0 at y=0
-                    scalar u = 0.23 * log(1.0 + 1000.0 * Cf[faceI].y()) / log(111.7);
-                    field[faceI] = factor * vector(u, 0, 0);
+                    scalar y0 = 1e-4;
+                    if (y > y0)
+                    {
+                        field[faceI] = vector(factor * 0.23 * log(y/y0)/log(0.1107/y0), 0, 0);
+                    }
+                    else
+                    {
+                        field[faceI] = vector(0, 0, 0);
+                    }
                 }
                 else
                 {
@@ -69,24 +76,25 @@ boundaryField
     }
     bottom
     {
-        type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     top
     {
-        type            noSlip;
+        type            slip;
     }
     bridgeDeck
     {
-        type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     deckSides
     {
-        type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     frontAndBack
     {
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

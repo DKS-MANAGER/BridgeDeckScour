@@ -22,38 +22,30 @@ boundaryField
 {
     inlet
     {
-        type            calculated;
-        value           uniform 0;
+        type            zeroGradient;
     }
     outlet
     {
-        type            calculated;
-        value           uniform 0;
+        type            zeroGradient;
     }
     bottom
     {
-        type            nutkWallFunction;
-        value           uniform 0;
+        type            zeroGradient;
     }
     top
     {
-        type            calculated;
-        value           uniform 0;
+        type            zeroGradient;
     }
     bridgeDeck
     {
-        type            nutkWallFunction;
-        value           uniform 0;
+        type            zeroGradient;
     }
     deckSides
     {
-        type            nutkWallFunction;
-        value           uniform 0;
+        type            zeroGradient;
     }
     frontAndBack
     {
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

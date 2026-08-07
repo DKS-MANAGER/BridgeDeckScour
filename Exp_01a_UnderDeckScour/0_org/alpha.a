@@ -55,40 +55,8 @@ boundaryField
 {
     inlet
     {
-        type            codedFixedValue;
+        type            fixedValue;
         value           uniform 0;
-        name            inlet_alpha_profile_01a;
-        codeInclude
-        #{
-            #include "fvCFD.H"
-        #};
-        codeOptions
-        #{
-            -I$(LIB_SRC)/finiteVolume/lnInclude \
-            -I$(LIB_SRC)/meshTools/lnInclude
-        #};
-        codeLibs
-        #{
-            -lfiniteVolume \
-            -lmeshTools
-        #};
-        code
-        #{
-            const fvPatch& boundaryPatch = patch();
-            const vectorField& Cf = boundaryPatch.Cf();
-            scalarField& field = *this;
-            forAll(Cf, faceI)
-            {
-                if (Cf[faceI].y() < 0.0)
-                {
-                    field[faceI] = 0.60;
-                }
-                else
-                {
-                    field[faceI] = 0.0;
-                }
-            }
-        #};
     }
     outlet
     {
@@ -115,5 +83,3 @@ boundaryField
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

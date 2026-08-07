@@ -23,7 +23,7 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           uniform 8.0e-4;
+        value           uniform 0.000198375;
     }
     outlet
     {
@@ -32,7 +32,7 @@ boundaryField
     bottom
     {
         type            kqRWallFunction;
-        value           uniform 8.0e-4;
+        value           uniform 0.000198375;
     }
     top
     {
@@ -41,17 +41,15 @@ boundaryField
     bridgeDeck
     {
         type            kqRWallFunction;
-        value           uniform 8.0e-4;
+        value           uniform 0.000198375;
     }
     deckSides
     {
         type            kqRWallFunction;
-        value           uniform 8.0e-4;
+        value           uniform 0.000198375;
     }
     frontAndBack
     {
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

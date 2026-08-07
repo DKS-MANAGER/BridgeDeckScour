@@ -22,8 +22,7 @@ boundaryField
 {
     inlet
     {
-        type            fixedValue;
-        value           uniform 3.825e-5;
+        type            zeroGradient;
     }
     outlet
     {
@@ -31,8 +30,7 @@ boundaryField
     }
     bottom
     {
-        type            epsilonWallFunction;
-        value           uniform 3.825e-5;
+        type            zeroGradient;
     }
     top
     {
@@ -40,18 +38,14 @@ boundaryField
     }
     bridgeDeck
     {
-        type            epsilonWallFunction;
-        value           uniform 3.825e-5;
+        type            zeroGradient;
     }
     deckSides
     {
-        type            epsilonWallFunction;
-        value           uniform 3.825e-5;
+        type            zeroGradient;
     }
     frontAndBack
     {
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

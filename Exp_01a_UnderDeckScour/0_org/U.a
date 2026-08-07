@@ -31,24 +31,25 @@ boundaryField
     }
     bottom
     {
-        type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     top
     {
-        type            noSlip;
+        type            slip;
     }
     bridgeDeck
     {
-        type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     deckSides
     {
-        type            noSlip;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     frontAndBack
     {
         type            empty;
     }
 }
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
