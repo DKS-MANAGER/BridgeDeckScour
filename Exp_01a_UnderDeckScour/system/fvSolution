@@ -121,7 +121,15 @@ relaxationFactors
 {
     fields
     {
-        pa              1.;
+        p_rbgh          0.7;
+        pa              0.7;
+    }
+    equations
+    {
+        "U.a"           0.5;
+        "U.b"           0.5;
+        "k.b"           0.7;
+        "omega.b"       0.7;
     }
 }
 
