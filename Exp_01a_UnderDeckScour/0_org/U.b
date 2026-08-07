@@ -83,6 +83,10 @@ boundaryField
     {
         type            noSlip;
     }
+    deckSides
+    {
+        type            noSlip;
+    }
     frontAndBack
     {
         type            empty;

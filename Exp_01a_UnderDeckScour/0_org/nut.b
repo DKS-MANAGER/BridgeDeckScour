@@ -45,6 +45,11 @@ boundaryField
         type            nutkWallFunction;
         value           uniform 0;
     }
+    deckSides
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
     frontAndBack
     {
         type            empty;

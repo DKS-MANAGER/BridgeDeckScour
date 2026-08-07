@@ -106,6 +106,10 @@ boundaryField
     {
         type            zeroGradient;
     }
+    deckSides
+    {
+        type            zeroGradient;
+    }
     frontAndBack
     {
         type            empty;

@@ -44,6 +44,11 @@ boundaryField
         type            epsilonWallFunction;
         value           uniform 4.147e-5;
     }
+    deckSides
+    {
+        type            epsilonWallFunction;
+        value           uniform 4.147e-5;
+    }
     frontAndBack
     {
         type            empty;

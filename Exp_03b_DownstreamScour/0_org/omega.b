@@ -109,6 +109,12 @@ boundaryField
         value           uniform 10.0;
         kn              0.536e-5;
     }
+    deckSides
+    {
+        type            omegaWallFunction;
+        value           uniform 10.0;
+        kn              0.536e-5;
+    }
     frontAndBack
     {
         type            empty;

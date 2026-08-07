@@ -108,6 +108,11 @@ boundaryField
         type            kqRWallFunction;
         value           uniform 1.98375e-4;
     }
+    deckSides
+    {
+        type            kqRWallFunction;
+        value           uniform 1.98375e-4;
+    }
     frontAndBack
     {
         type            empty;
